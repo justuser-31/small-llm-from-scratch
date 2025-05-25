@@ -5,26 +5,17 @@ import requests
 from tqdm import tqdm
 
 class TextDataset(Dataset):
-    def __init__(self, tokenizer, max_length=512, data_dir='./data'):
+    def __init__(self, tokenizer, dataset, max_length=512, data_dir='./data'):
         self.tokenizer = tokenizer
         self.max_length = max_length
         self.data_dir = data_dir
+        self.dataset = dataset
 
         # Load and tokenize data
         self.tokens = self.load_and_tokenize_data()
 
     def load_and_tokenize_data(self):
-        # Download TinyShakespeare dataset if not exists
-        data_path = os.path.join(self.data_dir, 'tiny_shakespeare.txt')
-
-        if not os.path.exists(data_path):
-            print("Downloading TinyShakespeare dataset...")
-            os.makedirs(self.data_dir, exist_ok=True)
-            url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
-
-            response = requests.get(url)
-            with open(data_path, 'w', encoding='utf-8') as f:
-                f.write(response.text)
+        data_path = os.path.join(self.data_dir, self.dataset)
 
         # Read and tokenize data
         with open(data_path, 'r', encoding='utf-8') as f:
@@ -47,7 +38,7 @@ class TextDataset(Dataset):
         return x, y
 
 def create_data_loaders(tokenizer, config):
-    dataset = TextDataset(tokenizer, config.max_seq_len, config.data_dir)
+    dataset = TextDataset(tokenizer, config.dataset, config.max_seq_len, config.data_dir)
 
     # Split dataset
     train_size = int(len(dataset) * config.train_split)

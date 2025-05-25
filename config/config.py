@@ -32,6 +32,8 @@ class Config:
     checkpoint_dir = './checkpoints'
     model_name = 'small-llm'
 
+    dataset = None
+
     # For small model (adjust these for your needs)
     small_config = {
         'd_model': 256,

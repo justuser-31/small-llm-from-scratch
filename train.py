@@ -15,6 +15,8 @@ def main():
                        help='Model configuration size')
     parser.add_argument('--resume', type=str, default=None,
                        help='Path to checkpoint to resume from')
+    parser.add_argument('--dataset', type=str, default='tiny_shakespeare.txt',
+                           help='File .txt with dataset on which train (data/some_file.txt)')
 
     args = parser.parse_args()
 
@@ -25,6 +27,8 @@ def main():
     if args.config == 'small':
         for key, value in config.small_config.items():
             setattr(config, key, value)
+    # Set dataset
+    config.dataset = args.dataset
 
     print(f"Using device: {config.device}")
     print(f"Model configuration: {args.config}")
