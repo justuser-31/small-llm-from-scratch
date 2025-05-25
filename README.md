@@ -7,4 +7,5 @@
 
 
 ## Datasets
-* https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+* `ya_qa.txt` (RU): soon...
+* `tiny_shakespeare.txt` (EN): https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
