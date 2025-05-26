@@ -10,6 +10,7 @@ For additional help: `python train.py --help`
 For additional help: `python generate.py --help`
 
 ## Datasets
+* `ya_qa_25.txt` (RU, 25%): https://drive.google.com/file/d/1Ias_kIVKYRyZ_Zk6E--O3G8nC4kh-eu1/view?usp=sharing
 * `ya_qa.txt` (RU): https://drive.google.com/file/d/1qBohD_5tGug29gJIMi0ndsjgd6JFcqJG/view?usp=sharing
 * `tiny_shakespeare.txt` (EN): https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 
