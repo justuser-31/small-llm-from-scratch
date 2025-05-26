@@ -16,7 +16,10 @@ def main():
     parser.add_argument('--resume', type=str, default=None,
                        help='Path to checkpoint to resume from')
     parser.add_argument('--dataset', type=str, default='tiny_shakespeare.txt',
-                           help='File .txt with dataset on which train (data/some_file.txt)')
+                       help='File .txt with dataset on which train (data/some_file.txt)')
+    parser.add_argument('--device', type=str, default='cuda',
+                       choices=['cuda', 'cpu'],
+                       help='Which device use to train model.')
 
     args = parser.parse_args()
 
@@ -29,9 +32,12 @@ def main():
             setattr(config, key, value)
     # Set dataset
     config.dataset = args.dataset
+    # Set device
+    config.device = torch.device(args.device)
 
     print(f"Using device: {config.device}")
     print(f"Model configuration: {args.config}")
+    print(f"Dataset: {args.dataset}")
 
     # Initialize tokenizer
     tokenizer = SimpleTokenizer()

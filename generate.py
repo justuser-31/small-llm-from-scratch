@@ -21,6 +21,9 @@ def main():
                        help='Top-k sampling parameter')
     parser.add_argument('--top_p', type=float, default=0.9,
                        help='Top-p (nucleus) sampling parameter')
+    parser.add_argument('--device', type=str, default='cuda',
+                       choices=['cuda', 'cpu'],
+	                   help='Which device use to train model.')
 
     args = parser.parse_args()
 
@@ -37,6 +40,9 @@ def main():
     tokenizer = SimpleTokenizer()
     model = SmallLLM(config).to(config.device)
     model.load_state_dict(checkpoint['model_state_dict'])
+
+    # Set device
+    config.device = torch.device(args.device)
 
     # Initialize generator
     generator = TextGenerator(model, tokenizer, config)
